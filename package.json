@@ -1,0 +1,31 @@
+{
+  "name": "eze-on-room",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "test": "mocha ./tests/*"
+  },
+  "dependencies": {
+    "bcrypt": "^3.0.1",
+    "body-parser": "^1.18.3",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "dotenv": "^6.1.0",
+    "express": "~4.16.0",
+    "firebase": "^5.5.4",
+    "firebase-admin": "^6.0.0",
+    "http-errors": "~1.6.2",
+    "joi": "^14.0.0",
+    "jsonwebtoken": "^8.3.0",
+    "lodash": "^4.17.11",
+    "morgan": "~1.9.0",
+    "pug": "2.0.0-beta11"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "sinon": "^7.0.0",
+    "sinon-chai": "^3.2.0"
+  }
+}
