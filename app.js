@@ -5,6 +5,8 @@ const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 const logger = require('morgan')
 const fs = require('fs')
+const admin = require('firebase-admin')
+const serviceAccountKey = require('./config/sak.json')
 
 const dotenv = require('dotenv')
 
@@ -23,6 +25,15 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccountKey),
+  databaseURL: process.env.FIREBASE_DATABASE_URL
+})
+
+admin.firestore().settings({
+  timestampsInSnapshots: true
+})
 
 const files = fs.readdirSync('./routes')
 for (const i in files) {

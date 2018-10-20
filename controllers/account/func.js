@@ -1,17 +1,5 @@
 const admin = require('firebase-admin')
 const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
-
-const serviceAccountKey = require('../../config/sak.json')
-
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccountKey),
-  databaseURL: process.env.FIREBASE_DATABASE_URL
-})
-
-admin.firestore().settings({
-  timestampsInSnapshots: true
-})
 
 const hashPassword = pwd => {
   return new Promise((resolve, reject) => {
