@@ -1,27 +1,60 @@
 const admin = require('firebase-admin')
-// const serviceAccountKey = require('../config/serviceAccountKey.json')
+// const bcrypt = require('bcrypt')
 
-const todoLists = sender => {
+const serviceAccountKey = require('../../config/sak.json')
+
+const hashPassword = pwd => {
+  // bcrypt.hash(pwd, 10, (err, hash) => {
+  //   if (err) return false
+
+  //   return hash
+  // })
+}
+
+const comparePassword = (password, hashPassword) => {
+  // bcrypt.compare(password, hashPassword).then(function(res) {
+  //   return res
+  // })
+}
+
+const addNewUserToDB = (username, password) => {
 	return new Promise(resolve => {
     admin.initializeApp({
-      // credential: admin.credential.cert(serviceAccountKey),
-      credential: admin.credential.cert({
-        projectId: '<PROJECT_ID>',
-        clientEmail: 'foo@<PROJECT_ID>.iam.gserviceaccount.com',
-        privateKey: '-----BEGIN PRIVATE KEY-----\n<KEY>\n-----END PRIVATE KEY-----\n'
-      }),
+      credential: admin.credential.cert(serviceAccountKey),
       databaseURL: process.env.FIREBASE_DATABASE_URL
     })
 
-    var db = admin.firestore()
-    
-    var docRef = db.collection('users').doc('Surin')
+    const db = admin.firestore()
+    const docReferAccount = db.collection('my-room').doc('account')
 
-    var setAda = docRef.set({
-      first: 'Surin',
-      last: 'Thongkam',
-      born: 1889
+    const setAccount = docReferAccount.set({
+      username: username,
+      password: password
     })
 
+    resolve(setAccount)
 	})
+}
+
+const findUserAccount = (username) => {
+  return new Promise (resolve => {
+    admin.initializeApp({
+      credential: admin.credential.cert(serviceAccountKey),
+      databaseURL: process.env.FIREBASE_DATABASE_URL
+    })
+
+    const db = admin.firestore()
+    const docReferAccount = db.collection('my-room').doc('account')
+
+    docReferAccount.orderByChild('username').equalTo('jaranchai').once('value').then( res => {
+      resolve(res)
+    })
+  })
+}
+
+module.exports = {
+  addNewUserToDB,
+  comparePassword,
+  hashPassword,
+  findUserAccount
 }

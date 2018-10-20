@@ -64,4 +64,4 @@ typings/
 package-lock.json
 
 # configuration
-config/serviceAccountKey.json
+config/sak.json
