@@ -1,6 +1,6 @@
 const Joi = require('joi')
 
-const createUser = body => {
+const signUser = body => {
   return new Promise((resolve, reject) => {
     const schema = Joi.object().keys({
       username: Joi.string().alphanum().min(3).max(30).required(),
@@ -19,5 +19,5 @@ const createUser = body => {
 }
 
 module.exports = {
-  createUser
+  signUser
 }
