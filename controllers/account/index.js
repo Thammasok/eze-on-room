@@ -1,4 +1,4 @@
-const { hashPassword, comparePassword, addNewUserToDB, findUserAccount } = require('./func')
+const { comparePassword, addNewUserToDB, findUserAccount, generateToken, hashPassword } = require('./func')
 const { signUser } = require('./validate')
 
 const signup = async (req, res, next) => {
@@ -17,9 +17,10 @@ const signin = async (req, res, next) => {
   comparePassword(user.password, value.password).then(isMatch => {
     if (isMatch) return res.status(403).json({ msg: 'Username or Password is wrong'})
     
-    return res.status(200).json({
-      id: user.id,
-      user: user.username
+    generateToken(user.id).then((token) => {
+      return res.status(200).json({
+        token: token
+      })
     })
   })
 }

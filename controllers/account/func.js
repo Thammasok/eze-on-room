@@ -1,5 +1,7 @@
 const admin = require('firebase-admin')
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+const moment = require('moment')
 
 const hashPassword = pwd => {
   return new Promise((resolve, reject) => {
@@ -18,6 +20,19 @@ const comparePassword = (password, hashPassword) => {
 
       resolve(result)
     })
+  })
+}
+
+const generateToken = (userid) => {
+  return new Promise((resolve) => {
+    var payload = {
+      iss: process.env.TOKEN_ISS,
+      sub: userid,
+      iat: moment().unix(),
+      exp: moment().add(12, 'hour').unix()
+    }
+
+    resolve(jwt.sign(payload, process.env.TOKEN_SECRET))
   })
 }
 
@@ -47,6 +62,7 @@ const findUserAccount = () => {
 module.exports = {
   addNewUserToDB,
   comparePassword,
-  hashPassword,
-  findUserAccount
+  findUserAccount,
+  generateToken,
+  hashPassword
 }
