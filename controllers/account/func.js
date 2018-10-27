@@ -38,8 +38,7 @@ const generateToken = (userid) => {
 
 const addNewUserToDB = (username, password) => {
 	return new Promise((resolve, reject) => {
-    admin.firestore().collection("my_room").doc("account").set({
-      username: username,
+    admin.firestore().collection("account").doc(username).set({
       password: password
     })
     .then(result => {
@@ -49,9 +48,9 @@ const addNewUserToDB = (username, password) => {
 	})
 }
 
-const findUserAccount = () => {
+const findUserAccount = (username) => {
   return new Promise ((resolve, reject) => {
-    admin.firestore().collection("my_room").doc("account").get().then( accountInfo => {
+    admin.firestore().collection("account").doc(username).get().then( accountInfo => {
       resolve(accountInfo.data())
     }).catch(err => {
       reject(err)

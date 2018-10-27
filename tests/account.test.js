@@ -161,16 +161,12 @@ describe('Account', () => {
 
       it('should called function when calling addNewUserToDB function ', async () => {
         mockFunc.expects("addNewUserToDB").withArgs(username, password).once()
+        
         func.addNewUserToDB(username, password)
+        
         mockFunc.verify()
+        mockFunc.restore()
       })
-      
-      // it('should called function when calling findUserAccount function ', async () => {
-      //   //$2b$10$1PB.oUMr9E35aTZpQ3SpTOrECxPDZP0wcOXd0f3wHPpZM7J1EiKv6
-      //   mockfunc.expects("findUserAccount").withArgs(username).once()
-      //   func.findUserAccount(username)
-      //   mockFunc.verify()
-      // })
     })
   })
 })
