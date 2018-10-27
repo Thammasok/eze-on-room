@@ -21,12 +21,13 @@
     "lodash": "^4.17.11",
     "moment": "^2.22.2",
     "morgan": "~1.9.0",
+    "node-pre-gyp": "^0.11.0",
     "pug": "2.0.0-beta11"
   },
   "devDependencies": {
     "chai": "^4.2.0",
     "mocha": "^5.2.0",
-    "sinon": "^7.0.0",
+    "sinon": "^7.1.0",
     "sinon-chai": "^3.2.0"
   }
 }

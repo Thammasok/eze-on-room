@@ -11,24 +11,24 @@ const assert = chai.assert
 const validate = require('../controllers/store/validate')
 const func = require('../controllers/account/func')
 
-describe('Store', () => {
-  describe('# Item Lists', () => {
-    describe('- Function', () => {
-      let mockFunc
+// describe('Store', () => {
+//   describe('# Item Lists', () => {
+//     describe('- Function', () => {
+//       let mockFunc
 
-      before(()=> {
-        mockfunc = sinon.mock(func)
-      })
+//       before(()=> {
+//         mockfunc = sinon.mock(func)
+//       })
 
-      after(() => {
-        mockFunc = sinon.restore()
-      })
+//       after(() => {
+//         mockFunc = sinon.restore()
+//       })
 
-      // it('should called function when calling itemLists function ', async () => {
-      //   mockFunc.expects("itemLists").once()
-      //   func.itemLists()
-      //   mockFunc.verify()
-      // })
-    })
-  })
-})
+//       it('should called function when calling itemLists function ', async () => {
+//         mockFunc.expects("itemLists").once().throws()
+//         func.itemLists()
+//         mockFunc.verify()
+//       })
+//     })
+//   })
+// })
