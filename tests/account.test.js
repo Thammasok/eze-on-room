@@ -5,7 +5,7 @@ const sinonChai = require("sinon-chai")
 chai.should()
 chai.use(sinonChai)
 
-// const expect = chai.expect
+const expect = chai.expect
 const assert = chai.assert
 
 const validate = require('../controllers/account/validate')
@@ -124,7 +124,7 @@ describe('Account', () => {
     })
 
     describe('- Function', () => {
-      let mockFunc
+      let mockAccountFunc
       let username
       let password
       let passwordHash
@@ -134,7 +134,7 @@ describe('Account', () => {
         password = "password123"
         passwordHash = ''
 
-        mockfunc = sinon.mock(func)
+        mockAccountFunc = sinon.mock(func)
       })
 
       after(() => {
@@ -142,7 +142,7 @@ describe('Account', () => {
         password = ''
         passwordHash = ''
 
-        mockFunc = sinon.restore()
+        mockAccountFunc = sinon.restore()
       })
 
       it('should return Value when calling hashPassword function', async () => {
@@ -160,12 +160,16 @@ describe('Account', () => {
       })
 
       it('should called function when calling addNewUserToDB function ', async () => {
-        mockFunc.expects("addNewUserToDB").withArgs(username, password).once()
+        mockAccountFunc.expects("addNewUserToDB").withArgs(username, password).once().returns({
+          "_writeTime": {
+              "_seconds": 1540711413,
+              "_nanoseconds": 169010000
+          }
+        })
         
         func.addNewUserToDB(username, password)
         
-        mockFunc.verify()
-        mockFunc.restore()
+        mockAccountFunc.verify()
       })
     })
   })
