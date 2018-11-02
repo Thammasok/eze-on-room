@@ -14,6 +14,7 @@ const func = require('../controllers/upload/func')
 describe('Upload', () => {
   describe('- Validate', () => {
     let imageId = ""
+    
     beforeEach(() => {
       imageId = ""
     })

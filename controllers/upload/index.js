@@ -1,4 +1,5 @@
 const fs = require('fs')
+
 const func = require('./func')
 const validate = require('./validate')
 
