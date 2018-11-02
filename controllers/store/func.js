@@ -16,7 +16,7 @@ const addNewItem = item => {
 
 const updateItem = item => {
   return new Promise((resolve, reject) => {
-    let itemRef = admin.firestore().collection("store").doc(item.name)
+    let itemRef = admin.firestore().collection("store").doc(item.itemId)
 
     let query = {}
     
@@ -67,9 +67,20 @@ const itemLists = () => {
   })
 }
 
+const itemDetail = (itemId) => {
+  return new Promise((resolve, reject) => {
+    admin.firestore().collection("store").doc(itemId).get().then(doc => {    
+      resolve(doc.data())
+    }).catch(err => {
+      reject(err)
+    })
+  })
+}
+
 module.exports = {
   addNewItem,
   updateItem,
   deleteItem,
-  itemLists
+  itemLists,
+  itemDetail
 }

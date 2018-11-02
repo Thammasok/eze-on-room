@@ -40,7 +40,26 @@ const auth = function (req, res, next) {
   }
 }
 
+const authNoContentType = function (req, res, next) {
+  if(req.headers['authorization'] === process.env.TOKEN_AUTHONRIZATION) {
+    jwt.verify(req.headers['login-token'], process.env.TOKEN_SECRET, function(err, decoded) {
+      if(decoded) {
+        next()
+      } else {
+        return res.status(401).json({
+          msg: 'Login token is invalid or expired.'
+        })
+      }
+    })
+  } else {
+    return res.status(401).json({
+      msg: 'authorization is not allow.'
+    })
+  }
+}
+
 module.exports = {
   auth,
+  authNoContentType,
   normal
 }
