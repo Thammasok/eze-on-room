@@ -5,7 +5,7 @@ const sinonChai = require("sinon-chai")
 chai.should()
 chai.use(sinonChai)
 
-const expect = chai.expect
+// const expect = chai.expect
 const assert = chai.assert
 
 const validate = require('../controllers/account/validate')
@@ -20,7 +20,7 @@ describe('Account', () => {
     afterEach(() => {
       this.body = {}
     })
-
+    
     it("Assert return Object type when calling signUser validate function throw errors", () => {
       validate.signUser(this.body).catch(err => {
         assert.typeOf(err, 'object')

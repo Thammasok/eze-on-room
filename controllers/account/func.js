@@ -53,7 +53,9 @@ const findUserAccount = (username) => {
     admin.firestore().collection("account").doc(username).get().then( accountInfo => {
       resolve(accountInfo.data())
     }).catch(err => {
-      reject(err)
+      // throw { message: "username or password is wrong." }
+      reject ({ message: "username or password is wrong." })
+      return
     })
   })
 }

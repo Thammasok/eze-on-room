@@ -6,12 +6,12 @@ const normal = function (req, res, next) {
       next()
     } else {
       return res.status(401).json({
-        msg: 'authorization is not allow.'
+        message: 'authorization is not allow.'
       })
     }
   } else {
     return res.status(415).json({
-      msg: "Not the specified content-type."
+      message: "Not the specified content-type."
     })
   }
 }
@@ -24,18 +24,18 @@ const auth = function (req, res, next) {
           next()
         } else {
           return res.status(401).json({
-            msg: 'Login token is invalid or expired.'
+            message: 'Login token is invalid or expired.'
           })
         }
       })
     } else {
       return res.status(401).json({
-        msg: 'authorization is not allow.'
+        message: 'authorization is not allow.'
       })
     }
   } else {
     return res.status(415).json({
-      msg: "Not the specified content-type."
+      message: "Not the specified content-type."
     })
   }
 }
@@ -47,13 +47,13 @@ const authNoContentType = function (req, res, next) {
         next()
       } else {
         return res.status(401).json({
-          msg: 'Login token is invalid or expired.'
+          message: 'Login token is invalid or expired.'
         })
       }
     })
   } else {
     return res.status(401).json({
-      msg: 'authorization is not allow.'
+      message: 'authorization is not allow.'
     })
   }
 }

@@ -36,7 +36,7 @@ const deleteItem = async (req, res) => {
 
   func.deleteItem(body.name).then(result => {
     return res.status(200).json({
-      msg: "delete file is success",
+      message: "delete file is success",
       result: result
     })
   }).catch(err => res.status(403).json(err))

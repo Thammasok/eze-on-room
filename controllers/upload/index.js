@@ -6,7 +6,7 @@ const validate = require('./validate')
 const uploadFile = async (req, res) => {
 	if (req.fileValidationError) {
     return res.status(403).json({
-      msg: req.fileValidationError
+      message: req.fileValidationError
     })
   }
   
@@ -53,7 +53,7 @@ const deleteFile = async (req, res) => {
     fs.unlinkSync('public' + image.url)
 
     return res.status(200).json({
-      msg: "delete file is success",
+      message: "delete file is success",
       result: result
     })
   })
